@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kroki Diagram Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kroki Diagram Visualizer</h1>
+        <p>Enter your diagram source code below, or upload a file.</p>
+        
+        <form id="diagram-form">
+            <div class="form-group">
+                <label for="diagram-type">Diagram Type:</label>
+                <select id="diagram-type"></select>
+            </div>
+            
+            <div class="form-group">
+                <label for="diagram-source">Source Code (for text-based diagrams):</label>
+                <textarea id="diagram-source" rows="15" placeholder="Enter diagram code here..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="diagram-file">OR Upload a File (for diagrams.net, etc.):</label>
+                <input type="file" id="diagram-file">
+                <span id="file-name"></span>
+            </div>
+            
+            <button type="submit">Visualize</button>
+        </form>
+        
+        <div id="result-container" class="hidden">
+            <h2>Result</h2>
+            <div id="error-message" class="error hidden"></div>
+            <img id="diagram-image" src="" alt="Generated Diagram">
+            <a id="diagram-link" href="#" target="_blank">Open Image in New Tab</a>
+        </div>
+    </div>
+    
+    <!-- Using defer ensures scripts execute in order after the page is parsed -->
+    <script src="https://cdn.jsdelivr.net/pako/1.0.3/pako.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

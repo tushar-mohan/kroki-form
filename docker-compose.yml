@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # The main Kroki service
+  kroki:
+    image: yuzutech/kroki:latest
+    restart: unless-stopped
+    environment:
+      # This correctly tells Kroki where to find the diagrams.net companion
+      - KROKI_DIAGRAMSNET_HOST=diagramsnet-companion
+    depends_on:
+      - diagramsnet-companion
+
+  # The required companion service for diagrams.net
+  diagramsnet-companion:
+    image: yuzutech/kroki-diagramsnet
+    restart: unless-stopped
+
+  # Our web frontend
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - kroki
+    labels:
+      - "org.opencontainers.image.authors=tusharmohan@gmail.com"
