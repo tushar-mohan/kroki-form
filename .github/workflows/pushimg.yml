@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  push-dev-image:
+  push-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +19,6 @@ jobs:
 
       - name: Build and push the Docker image
         run: |
-          docker build . --tag ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
-          docker push ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
+          docker build . --tag ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository }}:latest
 
