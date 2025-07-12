@@ -9,7 +9,7 @@ The standard Kroki image provides a powerful API, but it doesn't come with a use
 Key features added by this project:
 *   **A Simple Web Form:** An intuitive UI with a dropdown menu to select the diagram type.
 *   **Dual Input Methods:** Seamlessly handles both text-based diagrams (like PlantUML, Mermaid) and file-based diagrams (like `diagrams.net`). The form prioritizes file uploads if a file is selected.
-*   **Complete Diagram Support:** The dropdown is populated with the full list of diagram types supported by Kroki.
+*   **Multiple Diagram Support:** The dropdown is populated with the full list of diagram types supported by Kroki.
 *   **Pre-configured Gateway:** The setup correctly configures the main Kroki service to act as a gateway, delegating to a companion container for `diagrams.net` while using its own internal renderers for others like PlantUML and Graphviz.
 *   **One-Command Setup:** Using Docker Compose, the entire stack (the Kroki service, its companion, and the Nginx web frontend) is orchestrated and launched with a single command.
 
@@ -63,20 +63,16 @@ The interface provides two ways to generate a diagram:
 
 > **Note:** The application will always prioritize the file upload. If a file is selected, the content of the textarea will be ignored.
 
-## Project Structure
-
-kroki-form/
-├── docker-compose.yml # Defines and orchestrates all services (kroki, companion, web)
-├── Dockerfile # Builds the Nginx web server image for the frontend
-├── LICENSE # The project's MIT License
-├── README.md # This file
-├── html/ # Contains all frontend assets
-│ ├── index.html # The main HTML structure
-│ ├── style.css # Styling for the page
-│ └── script.js # All client-side logic for the UI
-└── nginx/
-└── nginx.conf # Nginx configuration for serving the site and proxying to Kroki
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Credits
+
+This project builds upon the fantastic [kroki](https://kroki.io) project.
+
+## Caveats
+
+Some of the external diagramming services provided by kroki may not work
+with our form yet. These external services require containers to be added
+to the `docker-compose.yml`. That's a work-in-progress.
